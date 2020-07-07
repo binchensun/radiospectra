@@ -20,14 +20,6 @@ class EOVSASpectrogram(LinearTimeSpectrogram):
         ('bg', REFERENCE)
     ]
 
-    @staticmethod
-    def swavesfile_to_date(filename):
-        _, name = os.path.split(filename)
-        date = name.split('_')[2]
-        return datetime.datetime(
-            int(date[0:4]), int(date[4:6]), int(date[6:])
-        )
-
     @classmethod
     def read(cls, filename, **kwargs):
         """
@@ -45,7 +37,7 @@ class EOVSASpectrogram(LinearTimeSpectrogram):
         header = fl[0].header
         t_delt = 1.0
         t_init = (start - get_day(start)).seconds
-        #content = 'EOVSA Total Power Spectrogram'
+        content = 'EOVSA'
         t_label = 'Time [UT]'
         f_label = 'Frequency [GHz]'
         #reverse the frequency axis
